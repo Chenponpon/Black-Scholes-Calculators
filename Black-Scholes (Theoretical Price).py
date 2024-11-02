@@ -1,4 +1,6 @@
-
+'''
+Reference: https://www.macroption.com/black-scholes-excel/
+'''
 
 
 # import library
@@ -22,25 +24,43 @@ def BS_Price(S, K, t, r, q, sigma):
     return Call_Price, Put_Price
 
 
-
+'''
+(2024.11.02) 不知道為什麼 Visual Studio 不可以像其他的 IDE 一樣直接打一堆的 input 就可以順序的輸入資料進去
+'''
 # Testing
 print('請輸入該選擇權之標的物價格($)')
 Underlying = float(input())
+65.24
+
 print('請輸入該選擇權之履約價格($)')
 Strike = float(input())
+65.00
+
 print("請輸入該選擇權之剩餘到期天數(Days)")
 Days = int(input())
+16
+
 print("請問您輸入的到期天數是以日曆日(Calenders, 365 Days)或以交易日(Business, 260 Days)，請以英文回答")
 Times = str(input())
+Calenders
 if Times == 'Calenders':
     Expiration = Days/365
 elif Times == 'Business':
     Expiration = Days/260
+
 print("請輸入該年利率(%)")
-Interest = float(input())
+Interest = float(input())/100
+1
+
 print("請輸入該選擇權之標的物股利率(%)")
-Dividend = float(input())
+Dividend = float(input())/100
+0
+
 print("請輸入該選擇權之標的物波動率(%)")
-Volatility = float(input())
+Volatility = float(input())/100
+39.55
+
+
 # Output
 Call, Put = BS_Price(S=Underlying, K=Strike, t=Expiration, r=Interest, q=Dividend, sigma=Volatility)
+
