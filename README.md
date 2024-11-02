@@ -26,3 +26,4 @@
 2. 左上角選單中選擇 Home ---> 綠色的 New ---> 輸入專案名稱 ---> Enter
 3. 下方有範例 Code 可以回到 VS 裡面 Git Terminal 複製貼上就好
 4. (記得上傳前要先更新 Git 再上傳!)
+5. git push : 將寫好的東西上傳到 Github 上面

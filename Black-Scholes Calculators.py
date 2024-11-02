@@ -1,21 +1,39 @@
 '''
-以下是先從打開 VS 到建立 Python Notebook 的過程
-1. 打開 VS
-2. 開啟新檔案 (Ctrl + Alt + N)
-3. 點選 Python
-4. 創造專案資料夾
-5. 創造 Python script (在左邊的專案欄位當中，右鍵 --> New File --> [檔名].py)
-6. 然後在上面要輸入要載入的 Python 環境，這樣就算完成了!
-
-7. 然後要要在右下角創造新的 terminal 出來，才可以呼叫 git，不然都會困在Python Kernal 中
-8. 要先設定
-    git config --global user.name "JPChen"
-    git config --global user.email "wind113@hotmail.com"
-    git init
-    到這邊才是起始 git 設定
-9. 更新
-    git add .
-    git commit -m "[上傳資訊]"
+這邊的目的在於，要做一個簡單的應用程式，然後可以把 Black Scholes Model 中的選擇權理論價格以及 Implied Vol 算出來
 '''
+# import library
+import numpy as np
+import tkinter as tk 
+from scipy.optimize import linprog  # 從 Science Python 中引入線性規劃求解
+from scipy.stats import norm    # 從 Science Statistics 中引入常態分配進來
 
-print('ABC')
+
+# Black Scholes Model 
+# -------
+# initial
+Underlying = 65.24
+Strike = 65
+Volatility = 0.3955
+Interest = 0.01
+Dividend = 0.00
+Days = 16
+
+Times = 'Calender'
+if Times == 'Calender':
+    Expiration = Days/365
+elif Times == 'Trading':
+    Expiration = Days/260
+
+# ----------
+# components 
+d1 = (np.log(Underlying/Strike) + Expiration*(Interest - Dividend + 0.5*np.power(Volatility, 2)))  /  (Volatility*np.power(Expiration, 0.5))
+d2 = d1 - (Volatility*np.power(Expiration, 0.5))
+
+compound_div = np.exp(-Dividend * Expiration)
+compound_int = np.exp(-Interest * Expiration) 
+
+
+# -------
+# Premium
+Call = Underlying * compound_div * norm.cdf(d1) - Strike * compound_int * norm.cdf(d2)
+Put = Strike * compound_int * norm.cdf(-d2) - Underlying * compound_div * norm.cdf(-d1)
