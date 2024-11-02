@@ -18,4 +18,11 @@
 # 更新相關設定
     git add .
     git commit -m "[上傳資訊]"
+    git log : 可以看到完整的紀錄
+    git log --oneline : 可以看到簡短的紀錄 (主要是在看序號和註解，所以應該也夠用惹)
 
+# 上傳至 Github 
+1. 打開 Github 
+2. 左上角選單中選擇 Home ---> 綠色的 New ---> 輸入專案名稱 ---> Enter
+3. 下方有範例 Code 可以回到 VS 裡面 Git Terminal 複製貼上就好
+4. (記得上傳前要先更新 Git 再上傳!)
